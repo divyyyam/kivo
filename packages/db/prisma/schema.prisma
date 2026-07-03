@@ -14,8 +14,21 @@ datasource db {
 }
 
 
-model User{
+model Users{
   id String @id @default(uuid())
-  createdAt DateTime
-  updatedAt DateTime
+  email String @unique
+  password_hash String
+  user_name   String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
+
+model Kivs{
+    id  String @id @default(uuid())
+
+
+}
+
+model Sessions{
+    id String @id @default(uuid())
+  }
