@@ -20,36 +20,45 @@ model Users {
   user_name     String
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
+
 }
 
 model Sessions {
   id String @id @default(uuid())
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+
+  user_id String @unique
+  refreshTokenHash String @unique
+
+  lastLogin DateTime
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([user_id])
 }
 
 model Novas {
-  id String @id @default(uuid())
-  user_id String @unique
+  id         String   @id @default(uuid())
+  user_id    String   @unique
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-
 }
 
 model Hokks {
-  id String @id @default(uuid())
+  id         String   @id @default(uuid())
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
 model Actions {
-  id String @id @default(uuid())
+  id         String   @id @default(uuid())
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
 model Triggers {
-  id String @id @default(uuid())
+  id         String   @id @default(uuid())
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
