@@ -1,5 +1,6 @@
 {
-  "name": "clients",
+  "name": "kivo",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -24,6 +25,9 @@
     "packages/*"
   ],
   "dependencies": {
+    "@prisma/adapter-pg": "^7.9.1",
+    "@prisma/extension-accelerate": "^3.0.1",
+    "class-validator": "^0.15.1",
     "prisma": "^7.4.0"
   }
 }
