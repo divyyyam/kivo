@@ -1,5 +1,5 @@
 {
-  "name": "kafka",
+  "name": "@repo/kafka",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,3 +18,4 @@
     "typescript": "^7.0.2"
   }
 }
+

@@ -1,3 +1,2 @@
-export const kafkaConfig = {
-    
-}
+export const kafka = {};
+
