@@ -1,23 +1,25 @@
-import express, { Request, Response } from "express";
+import express, { Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
-// import logger from "./config/logger"
+import { createLogger } from "@repo/logger";
+import env from "./config/env";
 const app = express();
 dotenv.config();
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
-const port = process.env.PORT;
 
-app.get("/health", (req: Request, res: Response) => {
+const logger = createLogger({
+  name: "hooks-api",
+});
+app.get("/health", (res: Response) => {
   return res.json({
     success: true,
     message: "Hooks api working",
   });
 });
 
-app.listen(port, () => {
-  console.log("Hooks api running on ", port);
+app.listen(env.port, () => {
+  logger.info(`Hooks api active on  http://localhost:${env.port}`);
 });
-
