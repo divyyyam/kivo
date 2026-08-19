@@ -20,13 +20,13 @@ model Users {
   user_name     String
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
-
+  kivs          Kivs[]
 }
 
 model Sessions {
   id String @id @default(uuid())
 
-  user_id String @unique
+  user_id          String @unique
   refreshTokenHash String @unique
 
   lastLogin DateTime
@@ -38,14 +38,17 @@ model Sessions {
   @@index([user_id])
 }
 
-model Novas {
-  id         String   @id @default(uuid())
-  user_id    String   @unique
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+model Kivs {
+  id         String    @id @default(uuid())
+  user_id    String    @unique
+  user       Users     @relation(fields: [user_id], references: [id])
+  trigger    Triggers?
+  actions    Actions[]
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
 }
 
-model Hokks {
+model Hooks {
   id         String   @id @default(uuid())
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -53,11 +56,33 @@ model Hokks {
 
 model Actions {
   id         String   @id @default(uuid())
+  kiv_id     String   @unique
+  kiv        Kivs     @relation(fields: [kiv_id], references: [id])
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
 model Triggers {
+  id         String   @id @default(uuid())
+  kiv_id     String   @unique
+  kiv        Kivs     @relation(fields: [kiv_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model AvailableActions {
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model KivRuns {
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model KivOutboxRuns {
   id         String   @id @default(uuid())
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

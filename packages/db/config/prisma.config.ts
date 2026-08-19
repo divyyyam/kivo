@@ -7,6 +7,8 @@ dotenv.config({
     path:path.resolve(process.cwd(),".env")
 })
 
+console.log(dbUrl)
+
 export default defineConfig({
     schema:"prisma/schema.prisma",
     migrations:{
