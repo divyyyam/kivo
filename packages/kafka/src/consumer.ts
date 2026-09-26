@@ -1,6 +1,6 @@
 import { kafka } from "./client";
 import { Consumer } from "kafkajs";
-export async function createConsumer(groupId: string): Promsie<Consumer> {
+export async function createConsumer(groupId: string): Promise<Consumer> {
   const consumer = kafka.consumer({
     groupId,
   });
