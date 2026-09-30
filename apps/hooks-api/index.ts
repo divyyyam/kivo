@@ -2,17 +2,14 @@ import express, { Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
-import { createLogger } from "@repo/logger";
 import env from "./config/env";
+import logger from "./config/logger";
 const app = express();
 dotenv.config();
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
-const logger = createLogger({
-  name: "hooks-api",
-});
 app.get("/health", (res: Response) => {
   return res.json({
     success: true,
