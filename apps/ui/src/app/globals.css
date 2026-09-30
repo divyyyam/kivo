@@ -1,3 +1,22 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+:root {
+  --bg: #f1f4f5;
+  --surface: #ffffff;
+  --surface-muted: #f4f4f9;
+
+  --surface-hover: #ebeaf1;
+  --chip: #efeef3;
+
+  --track: #e9e8ef;
+  --ink-muted: #6b6b76; /* estimated, for secondary text */
+
+  --accent: #c8e445;
+  --accent-ink: #111116; /* text on lime */
+
+  --danger: #ee6035;
+  --danger-tint: #fde3db; /* estimated */
+  --warning: #f5a017;
+  --warning-tint: #fcefd6;
+}
