@@ -11,6 +11,8 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
+//core logic => get a task (from kafka) and perform it (configure a canonical style abstract extensible pattern that explains the procesor what to do when a task arrives)
 app.listen(port, () => {
-  logger.info("Processor initialized");
-});
+  logger.info(`Processor initialized ${port}`);
+});
+
