@@ -1,0 +1,36 @@
+FROM oven/bun:1 AS pruner
+
+WORKDIR /repo
+
+COPY . .
+
+RUN bunx turbo prune outbox-sweeper --docker
+
+
+FROM oven/bun:1 AS builder
+
+WORKDIR /repo
+
+COPY --from=pruner /repo/out/json/ .
+
+RUN bun install --frozen-lockfile
+
+COPY --from=pruner /repo/out/full/ .
+
+RUN bunx turbo build --filter=outbox-sweeper...
+
+
+FROM node:22-alpine AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY --from=builder /repo/apps/outbox-sweeper ./apps/outbox-sweeper
+COPY --from=builder /repo/packages ./packages
+COPY --from=builder /repo/node_modules ./node_modules
+
+WORKDIR /app/apps/outbox-sweeper
+
+CMD ["node", "dist/index.js"]
+
