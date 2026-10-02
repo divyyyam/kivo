@@ -3,7 +3,8 @@ import cors from "cors";
 import helmet from "helmet";
 import env from "./config/env";
 import logger from "./config/logger";
-
+import * as dotenv from "dotenv";
+dotenv.config();
 const app = express();
 const port = env.port || 4000;
 
@@ -15,4 +16,3 @@ app.use(helmet());
 app.listen(port, () => {
   logger.info(`Processor initialized ${port}`);
 });
-
