@@ -3,9 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { LogsModule } from './logs/logs.module';
+import { KivLogsModule } from './kiv-logs/kiv-logs.module';
 
 @Module({
-  imports: [AuthModule, LogsModule],
+  imports: [AuthModule, LogsModule, KivLogsModule],
   controllers: [AppController],
   providers: [AppService],
 })
