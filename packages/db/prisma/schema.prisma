@@ -87,3 +87,9 @@ model KivOutboxRuns {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
+
+model Orbits {
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
